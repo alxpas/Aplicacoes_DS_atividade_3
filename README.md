@@ -20,7 +20,7 @@ Certifique-se de ter o Python instalado (versão 3.8 ou superior). É altamente 
 No seu terminal, execute os comandos:
 ```bash
 # Clone o repositório (substitua pela sua URL)
-git clone [https://github.com/seu-usuario/agencia-viagens.git](https://github.com/seu-usuario/agencia-viagens.git)
+git clone https://github.com/seu-usuario/agencia-viagens.git
 cd agencia-viagens
 
 # Crie e ative o ambiente virtual
