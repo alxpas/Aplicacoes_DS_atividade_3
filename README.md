@@ -1,6 +1,3 @@
-Aqui está a versão do `README.md` estruturada e sem nenhum emoticon, pronta para o seu repositório:
-
-```markdown
 # Agência de Viagens - Sistema de Gerenciamento
 
 ## Introdução
@@ -79,7 +76,3 @@ python desktop.py
 ```
 
 *Uma janela nativa do seu sistema operacional será aberta com o painel de administração.*
-
-```
-
-```
