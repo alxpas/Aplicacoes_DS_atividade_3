@@ -1,13 +1,13 @@
 # Agência de Viagens - Sistema de Gerenciamento
 
 ## Introdução
-Este projeto é uma aplicação de gerenciamento para uma agência de viagens fictícia, desenvolvida em Python. O principal foco do sistema é demonstrar a integração poliglota de persistência[cite: 1]. Para isso, ele utiliza dois bancos de dados simultaneamente: o Supabase (PostgreSQL) para lidar com dados relacionais e transacionais (clientes, destinos e vendas)[cite: 1], e o MongoDB Atlas (NoSQL) para o armazenamento flexível de comentários de clientes sobre as viagens[cite: 1]. 
+Este projeto é uma aplicação de gerenciamento para uma agência de viagens fictícia, desenvolvida em Python. O principal foco do sistema é demonstrar a integração poliglota de persistência. Para isso, ele utiliza dois bancos de dados simultaneamente: o Supabase (PostgreSQL) para lidar com dados relacionais e transacionais (clientes, destinos e vendas), e o MongoDB Atlas (NoSQL) para o armazenamento flexível de comentários de clientes sobre as viagens. 
 
 ## Descrição das Interfaces
-O sistema é composto por duas interfaces distintas que operam sobre a mesma base de dados, simulando cenários para diferentes tipos de usuários[cite: 1]:
+O sistema é composto por duas interfaces distintas que operam sobre a mesma base de dados, simulando cenários para diferentes tipos de usuários:
 
-*   **Interface Web (Gradio):** Focada no fluxo de registro. Permite o cadastro sequencial de Clientes, Destinos e Vendas (salvos no Supabase) e, por fim, a inserção e visualização de Comentários das viagens (salvos no MongoDB)[cite: 1]. O sistema possui travas lógicas de validação, garantindo que um comentário só possa ser feito após a conclusão de uma venda.
-*   **Interface Desktop (Tkinter):** Voltada para a administração do sistema. Oferece operações completas de CRUD (Create, Read, Update e Delete) para os dados estruturados no Supabase[cite: 1]. A interface é separada por abas (Clientes, Destinos, Vendas), listando os registros em tabelas interativas e permitindo atualizações ou exclusões diretas com confirmação de segurança.
+*   **Interface Web (Gradio):** Focada no fluxo de registro. Permite o cadastro sequencial de Clientes, Destinos e Vendas (salvos no Supabase) e, por fim, a inserção e visualização de Comentários das viagens (salvos no MongoDB). O sistema possui travas lógicas de validação, garantindo que um comentário só possa ser feito após a conclusão de uma venda.
+*   **Interface Desktop (Tkinter):** Voltada para a administração do sistema. Oferece operações completas de CRUD (Create, Read, Update e Delete) para os dados estruturados no Supabase. A interface é separada por abas (Clientes, Destinos, Vendas), listando os registros em tabelas interativas e permitindo atualizações ou exclusões diretas com confirmação de segurança.
 
 ---
 
