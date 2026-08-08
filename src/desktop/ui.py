@@ -47,11 +47,21 @@ class AgenciaApp:
         # Botões
         frame_botoes = tk.Frame(self.aba_clientes)
         frame_botoes.pack(fill="x", padx=10, pady=5)
-        tk.Button(frame_botoes, text="Cadastrar", command=self.cadastrar_cliente, width=15).pack(side="left", padx=5)
-        tk.Button(frame_botoes, text="Atualizar", command=self.atualizar_cliente, width=15).pack(side="left", padx=5)
-        tk.Button(frame_botoes, text="Excluir", command=self.excluir_cliente, width=15).pack(side="left", padx=5)
-        tk.Button(frame_botoes, text="Limpar Campos", command=self.limpar_clientes, width=15).pack(side="left", padx=5)
+        tk.Button(frame_botoes, text="Cadastrar", command=self.cadastrar_cliente, width=10).pack(side="left", padx=5)
+        tk.Button(frame_botoes, text="Atualizar", command=self.atualizar_cliente, width=10).pack(side="left", padx=5)
+        tk.Button(frame_botoes, text="Excluir", command=self.excluir_cliente, width=10).pack(side="left", padx=5)
+        tk.Button(frame_botoes, text="Limpar", command=self.limpar_clientes, width=10).pack(side="left", padx=5)
+        
+        # Botão Atualizar e Checkbutton para Inativos
         tk.Button(frame_botoes, text="Atualizar Lista", command=self.carregar_clientes, width=15).pack(side="right", padx=5)
+        
+        self.mostrar_inativos_var = tk.BooleanVar(value=False)
+        tk.Checkbutton(
+            frame_botoes, 
+            text="Mostrar Inativos", 
+            variable=self.mostrar_inativos_var, 
+            command=self.carregar_clientes
+        ).pack(side="right", padx=5)
 
         # Treeview
         colunas = ("ID", "Nome", "E-mail")
@@ -69,10 +79,19 @@ class AgenciaApp:
         self.cli_email_var.set("")
 
     def carregar_clientes(self):
+        # Limpa a tabela atual
         for item in self.tree_clientes.get_children():
             self.tree_clientes.delete(item)
+            
         try:
-            for row in db.listar_clientes():
+            # Verifica se o checkbox de inativos está marcado
+            if self.mostrar_inativos_var.get():
+                dados = db.listar_clientes_inativos()
+            else:
+                dados = db.listar_clientes()
+                
+            # Preenche a tabela com os dados retornados
+            for row in dados:
                 self.tree_clientes.insert("", "end", values=(row['id'], row['nome'], row['email']))
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar clientes: {e}")

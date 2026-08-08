@@ -13,7 +13,12 @@ supabase: Client = create_client(url_supabase, key_supabase)
 
 # ==================== CLIENTES ====================
 def listar_clientes():
-    return supabase.table("clientes").select("*").order("id").execute().data
+    # Adicionamos o filtro .eq("ativo", True) para trazer apenas os não-excluídos
+    return supabase.table("clientes").select("*").eq("ativo", True).order("id").execute().data
+
+def listar_clientes_inativos():
+    # Traz apenas os clientes que foram marcados como inativos (excluídos logicamente)
+    return supabase.table("clientes").select("*").eq("ativo", False).order("id").execute().data
 
 def criar_cliente(nome, email):
     supabase.table("clientes").insert({"nome": nome, "email": email}).execute()
@@ -22,7 +27,8 @@ def atualizar_cliente(cliente_id, nome, email):
     supabase.table("clientes").update({"nome": nome, "email": email}).eq("id", cliente_id).execute()
 
 def excluir_cliente(cliente_id):
-    supabase.table("clientes").delete().eq("id", cliente_id).execute()
+    # Em vez de deletar, atualizamos a coluna 'ativo' para False
+    supabase.table("clientes").update({"ativo": False}).eq("id", cliente_id).execute()
 
 # ==================== DESTINOS ====================
 def listar_destinos():
